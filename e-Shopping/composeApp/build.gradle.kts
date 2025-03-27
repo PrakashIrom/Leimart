@@ -22,6 +22,7 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation("androidx.compose.ui:ui-text-google-fonts:1.7.8")
         }
         commonMain.dependencies {
             implementation(compose.runtime)
