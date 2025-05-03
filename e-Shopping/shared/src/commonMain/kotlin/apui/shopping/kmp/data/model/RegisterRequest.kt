@@ -6,12 +6,12 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class RegisterRequest(
     @SerialName("name")
-    val userName: String,
-    val email: String,
+    val userName: String = "",
+    val email: String = "",
     @SerialName("phoneNumber")
-    val phoneNo: String,
-    val password: String,
-    val confirmPassword: String,
+    val phoneNo: String = "",
+    val password: String = "",
+    val confirmPassword: String = "",
     @SerialName("whatsApp_Notification")
-    val whatsAppNotification: Boolean
+    val whatsAppNotification: Boolean = false
 )

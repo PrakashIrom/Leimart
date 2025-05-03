@@ -1,9 +1,9 @@
 package apui.shopping.kmp.domain.model
 
-// For Login Page
-data class AuthFormState(
+data class RegisterModel(
     val userName: String = "",
-    val emailOrPhone: String = "",
+    val email: String = "",
+    val phone: String = "",
     val password: String = "",
     val confirmPassword: String = ""
 )

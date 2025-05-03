@@ -10,24 +10,10 @@ import io.ktor.client.request.setBody
 
 class RegisterApiService(private val client: HttpClient) {
     suspend fun registerUser(
-        userName: String,
-        email: String,
-        phoneNo: String,
-        password: String,
-        confirmPassword: String,
-        whatsAppNotification: Boolean
+        registerRequest: RegisterRequest
     ): RegisterResponse {
         return client.post(ApiConfig.Endpoints.registration) {
-            setBody(
-                RegisterRequest(
-                    userName,
-                    email,
-                    phoneNo,
-                    password,
-                    confirmPassword,
-                    whatsAppNotification
-                )
-            )
+            setBody(registerRequest)
         }.body()
     }
 }

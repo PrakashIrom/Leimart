@@ -1,15 +1,15 @@
 package apui.shopping.kmp.presentation.registration
 
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import apui.shopping.kmp.data.model.RegisterRequest
 import apui.shopping.kmp.data.model.RegisterResponse
 import apui.shopping.kmp.data.remote.registration.RegisterApiService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import androidx.compose.runtime.State
 
 sealed interface RegisterUiState {
     data class Success(val registerResponse: RegisterResponse) : RegisterUiState
@@ -22,13 +22,39 @@ class RegisterViewModel(private val registerApiService: RegisterApiService) : Vi
     private val _registerUiState = MutableStateFlow<RegisterUiState>(RegisterUiState.Loading)
     val registerUiState: StateFlow<RegisterUiState> = _registerUiState
 
+    private val _registerRequestState = mutableStateOf(RegisterRequest())
+    val registerRequestState: State<RegisterRequest> = _registerRequestState
+
+    fun onUserNameChange(userName: String) {
+        _registerRequestState.value = _registerRequestState.value.copy(userName = userName)
+    }
+
+    fun onEmailChange(email: String) {
+        _registerRequestState.value = _registerRequestState.value.copy(email = email)
+    }
+
+    fun onPhoneNoChange(phoneNo: String) {
+        _registerRequestState.value = _registerRequestState.value.copy(phoneNo = phoneNo)
+
+    }
+
+    fun onPasswordChange(password: String) {
+        _registerRequestState.value = _registerRequestState.value.copy(password = password)
+
+    }
+
+    fun onConfirmPasswordChange(confirmPassword: String) {
+        _registerRequestState.value =
+            _registerRequestState.value.copy(confirmPassword = confirmPassword)
+    }
+
+    fun whatsAppNotification(whatsAppNotification: Boolean) {
+        _registerRequestState.value =
+            _registerRequestState.value.copy(whatsAppNotification = whatsAppNotification)
+    }
+
     fun registerUser(
-        userName: String,
-        email: String,
-        phoneNo: String,
-        password: String,
-        confirmPassword: String,
-        whatsAppNotification: Boolean
+        registerRequest: RegisterRequest
     ) {
 
         _registerUiState.value = RegisterUiState.Loading
@@ -37,12 +63,7 @@ class RegisterViewModel(private val registerApiService: RegisterApiService) : Vi
 
             try {
                 val registerResponse = registerApiService.registerUser(
-                    userName,
-                    email,
-                    phoneNo,
-                    password,
-                    confirmPassword,
-                    whatsAppNotification
+                    registerRequest = registerRequest
                 )
                 _registerUiState.value = RegisterUiState.Success(registerResponse)
 

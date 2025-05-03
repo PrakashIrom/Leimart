@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import apui.shopping.kmp.domain.model.AuthFormState
 
 class LoginViewModel : ViewModel() {
-    private var _formState = mutableStateOf(AuthFormState())
+    private val _formState = mutableStateOf(AuthFormState())
     val formState: State<AuthFormState> = _formState
 
     fun onEmailOrPhoneChange(emailOrPhone: String) {
