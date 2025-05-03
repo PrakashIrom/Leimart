@@ -1,5 +1,3 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -11,7 +9,6 @@ plugins {
 
 kotlin {
     androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
@@ -22,7 +19,18 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
-            implementation("androidx.compose.ui:ui-text-google-fonts:1.7.8")
+            implementation("androidx.compose.ui:ui-text-google-fonts:1.8.0")
+
+            // Koin for di
+            implementation("io.insert-koin:koin-core:4.0.1")
+            implementation("io.insert-koin:koin-android:3.5.0")
+            implementation("io.insert-koin:koin-androidx-compose:3.5.0")
+            implementation("io.insert-koin:koin-compose-viewmodel:4.0.1")
+
+            implementation(libs.kotlinx.coroutines.android)
+
+            // Ktor
+            implementation(libs.ktor.client.okhttp)
         }
         commonMain.dependencies {
             implementation(compose.runtime)

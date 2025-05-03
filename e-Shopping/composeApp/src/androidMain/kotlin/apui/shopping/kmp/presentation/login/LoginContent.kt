@@ -5,15 +5,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
-import androidx.compose.material.icons.Icons
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -32,11 +29,20 @@ import apui.shopping.kmp.utils.ui.LeimartTextField
 import apui.shopping.kmp.utils.ui.SolidButton
 import apui.shopping.kmp.presentation.theme.appColor.leimartBlue
 import apui.shopping.kmp.presentation.theme.appColor.primary
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun LoginContent() {
-    val userMailNo = remember { mutableStateOf("") }
-    val userPassword = remember { mutableStateOf("") }
+fun LoginContent(viewModel: LoginViewModel = koinViewModel()) {
+    val formState = viewModel.formState
+
+    val userMailNo = formState.value.emailOrPhone
+    val userPassword = formState.value.password
+    val onEmailOrPhoneChange: (String) -> Unit = { newValue ->
+        viewModel.onEmailOrPhoneChange(newValue)
+    }
+    val onPasswordChange: (String) -> Unit = { newValue ->
+        viewModel.onPasswordChange(newValue)
+    }
 
     Column(modifier = Modifier.padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         LeimartText(
@@ -47,30 +53,37 @@ fun LoginContent() {
             color = primary
         )
         Spacer(modifier = Modifier.height(16.dp))
-        LoginForm(userMailNo, userPassword)
+        LoginForm(userMailNo, userPassword, onEmailOrPhoneChange, onPasswordChange)
         Spacer(Modifier.height(16.dp))
         LoginActions()
     }
 }
 
 @Composable
-fun LoginForm(userMailNo: MutableState<String>, userPassword: MutableState<String>) {
+fun LoginForm(
+    userMailNo: String,
+    userPassword: String,
+    onEmailOrPhoneChange: (String) -> Unit,
+    onPasswordChange: (String) -> Unit
+) {
     Column {
         LeimartTextField(
             value = userMailNo,
+            onValueChange = onEmailOrPhoneChange,
             label = stringResource(R.string.email) + '/' + stringResource(R.string.phone_no)
         )
         Spacer(modifier = Modifier.height(16.dp))
-        PasswordTextField(userPassword)
+        PasswordTextField(userPassword, onPasswordChange)
     }
 }
 
 @Composable
-fun PasswordTextField(userPassword: MutableState<String>) {
+fun PasswordTextField(userPassword: String, onPasswordChange: (String) -> Unit) {
     val isPasswordVisible = remember { mutableStateOf(false) }
 
     LeimartTextField(
         value = userPassword,
+        onValueChange = onPasswordChange,
         label = stringResource(R.string.password),
         trailingIcon = {
             Icon(

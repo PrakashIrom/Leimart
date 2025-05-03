@@ -6,7 +6,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
@@ -16,7 +15,8 @@ import apui.shopping.kmp.presentation.theme.font.bodyFontFamily
 
 @Composable
 fun LeimartTextField(
-    value: MutableState<String>,
+    onValueChange: (String) -> Unit,
+    value: String,
     label: String,
     modifier: Modifier = Modifier,
     trailingIcon: @Composable (() -> Unit)? = null,
@@ -28,8 +28,8 @@ fun LeimartTextField(
             modifier = modifier
                 .fillMaxWidth()
                 .height(70.dp),
-            value = value.value,
-            onValueChange = { value.value = it },
+            value = value,
+            onValueChange = onValueChange,
             label = { LeimartText(label, fontFamily = bodyFontFamily, color = primary) },
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = primary,
@@ -40,4 +40,5 @@ fun LeimartTextField(
             visualTransformation = visualTransformation
         )
     }
+
 }
