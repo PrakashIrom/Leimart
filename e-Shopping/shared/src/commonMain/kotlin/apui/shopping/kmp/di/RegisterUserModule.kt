@@ -1,7 +1,7 @@
 package apui.shopping.kmp.di
 
-import apui.shopping.kmp.data.remote.registration.repository.RegisterApiServiceImpl
-import apui.shopping.kmp.domain.repository.RegisterApiService
+import apui.shopping.kmp.data.remote.repository.registration.RegisterApiServiceImpl
+import apui.shopping.kmp.domain.remote.repository.RegisterApiService
 import apui.shopping.kmp.domain.usecase.registration.RegisterUseCase
 import org.koin.dsl.module
 

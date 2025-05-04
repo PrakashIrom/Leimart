@@ -1,9 +1,9 @@
-package apui.shopping.kmp.data.remote.registration.repository
+package apui.shopping.kmp.data.remote.repository.registration
 
 import apui.shopping.kmp.data.model.RegisterRequest
 import apui.shopping.kmp.data.model.RegisterResponse
 import apui.shopping.kmp.data.remote.ApiConfig
-import apui.shopping.kmp.domain.repository.RegisterApiService
+import apui.shopping.kmp.domain.remote.repository.RegisterApiService
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.post

@@ -35,12 +35,10 @@ class RegisterViewModel(private val registerUseCase: RegisterUseCase) : ViewMode
 
     fun onPhoneNoChange(phoneNo: String) {
         _registerRequestState.value = _registerRequestState.value.copy(phoneNo = phoneNo)
-
     }
 
     fun onPasswordChange(password: String) {
         _registerRequestState.value = _registerRequestState.value.copy(password = password)
-
     }
 
     fun onConfirmPasswordChange(confirmPassword: String) {
@@ -56,11 +54,9 @@ class RegisterViewModel(private val registerUseCase: RegisterUseCase) : ViewMode
     fun registerUser(
         registerRequest: RegisterRequest
     ) {
-
         _registerUiState.value = RegisterUiState.Loading
 
         viewModelScope.launch {
-
             try {
                 val registerResponse = registerUseCase.invoke(
                     registerRequest = registerRequest

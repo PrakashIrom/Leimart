@@ -65,6 +65,12 @@ fun SignUpForm(
     viewModel: RegisterViewModel,
     navController: NavHostController
 ) {
+    /* 1. Min length and other case in filling user name
+       2. Email validation
+       3. Check whether the input no is of length 10
+       4. Password has all the criteria
+       5. Check password equals confirm password
+       */
     val onUserNameChange: (String) -> Unit = { newValue -> viewModel.onUserNameChange(newValue) }
     val onEmailChange: (String) -> Unit = { newValue -> viewModel.onEmailChange(newValue) }
     val onPhoneNoChange: (String) -> Unit = { newValue -> viewModel.onPhoneNoChange(newValue) }
@@ -136,7 +142,7 @@ fun RegisterAction(viewModel: RegisterViewModel, navController: NavHostControlle
             }
 
             is RegisterUiState.Error -> {
-                LeimartToast(toastMessage = registerResponseState.message)
+                LeimartToast(toastMessage = "Error Occurred, try again!")
             }
         }
         isButtonClick.value = false
