@@ -13,11 +13,12 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
+import androidx.navigation.NavHostController
 import apui.shopping.kmp.R
 import apui.shopping.kmp.utils.ui.TransparentBox
 
 @Composable
-fun SignUpPage(modifier: Modifier) {
+fun SignUpPage(modifier: Modifier, navController: NavHostController) {
     val focusManager = LocalFocusManager.current
     Box(
         modifier = modifier
@@ -37,6 +38,6 @@ fun SignUpPage(modifier: Modifier) {
                 .graphicsLayer { alpha = 0.6f },
             contentScale = ContentScale.Crop
         )
-        TransparentBox(alpha = 0.05f) { SignUpPageContent() }
+        TransparentBox(alpha = 0.05f) { SignUpPageContent(navController = navController) }
     }
 }

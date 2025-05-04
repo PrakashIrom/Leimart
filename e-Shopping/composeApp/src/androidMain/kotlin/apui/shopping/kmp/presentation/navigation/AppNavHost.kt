@@ -15,11 +15,11 @@ fun AppNavHost(
     startDestination: String
 ) {
     NavHost(navController = navController, startDestination = startDestination) {
-        composable(Screens.LOGIN.name) {
-            LoginPage(modifier = Modifier.fillMaxSize())
+        composable(Destination.Login.route) {
+            LoginPage(modifier = Modifier.fillMaxSize(), navController)
         }
-        composable(Screens.SIGN_UP.name) {
-            SignUpPage(modifier = Modifier.fillMaxSize())
+        composable(Destination.SignUp.route) {
+            SignUpPage(modifier = Modifier.fillMaxSize(), navController)
         }
     }
 }

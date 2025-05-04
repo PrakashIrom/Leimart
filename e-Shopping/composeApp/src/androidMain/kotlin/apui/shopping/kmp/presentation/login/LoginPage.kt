@@ -12,14 +12,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
 import apui.shopping.kmp.R
 import apui.shopping.kmp.utils.ui.TransparentBox
 
 @Composable
-fun LoginPage(modifier: Modifier) {
+fun LoginPage(modifier: Modifier, navController: NavHostController) {
     val focusManager = LocalFocusManager.current
     Box(
         modifier = modifier
@@ -39,7 +41,7 @@ fun LoginPage(modifier: Modifier) {
                 .graphicsLayer { alpha = 0.6f },
             contentScale = ContentScale.Crop
         )
-        TransparentBox(alpha = 0.05f) { LoginContent() }
+        TransparentBox(alpha = 0.05f) { LoginContent(navController = navController) }
     }
 }
 
@@ -47,6 +49,6 @@ fun LoginPage(modifier: Modifier) {
 @Composable
 fun ShowLoginPage() {
     MaterialTheme {
-        LoginPage(Modifier.fillMaxSize())
+        LoginPage(Modifier.fillMaxSize(), NavHostController(LocalContext.current))
     }
 }

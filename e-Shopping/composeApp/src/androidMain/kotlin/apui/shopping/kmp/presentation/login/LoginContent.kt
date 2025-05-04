@@ -22,6 +22,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import apui.shopping.kmp.R
 import apui.shopping.kmp.presentation.theme.font.headerFontFamily
 import apui.shopping.kmp.utils.ui.LeimartText
@@ -32,7 +33,7 @@ import apui.shopping.kmp.presentation.theme.appColor.primary
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun LoginContent(viewModel: LoginViewModel = koinViewModel()) {
+fun LoginContent(viewModel: LoginViewModel = koinViewModel(), navController: NavHostController) {
     val formState = viewModel.formState
 
     val userMailNo = formState.value.emailOrPhone
@@ -55,7 +56,7 @@ fun LoginContent(viewModel: LoginViewModel = koinViewModel()) {
         Spacer(modifier = Modifier.height(16.dp))
         LoginForm(userMailNo, userPassword, onEmailOrPhoneChange, onPasswordChange)
         Spacer(Modifier.height(16.dp))
-        LoginActions()
+        LoginActions(navController)
     }
 }
 
@@ -102,7 +103,7 @@ fun PasswordTextField(userPassword: String, onPasswordChange: (String) -> Unit) 
 }
 
 @Composable
-fun LoginActions() {
+fun LoginActions(navController: NavHostController) {
     Column {
         SolidButton(
             {}, stringResource(R.string.submit),
