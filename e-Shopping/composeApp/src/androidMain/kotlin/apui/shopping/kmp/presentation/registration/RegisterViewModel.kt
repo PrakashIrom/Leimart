@@ -5,11 +5,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import apui.shopping.kmp.data.model.RegisterRequest
 import apui.shopping.kmp.data.model.RegisterResponse
-import apui.shopping.kmp.data.remote.registration.RegisterApiService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import androidx.compose.runtime.State
+import apui.shopping.kmp.domain.usecase.registration.RegisterUseCase
 
 sealed interface RegisterUiState {
     data class Success(val registerResponse: RegisterResponse) : RegisterUiState
@@ -17,7 +17,7 @@ sealed interface RegisterUiState {
     data class Error(val message: String) : RegisterUiState
 }
 
-class RegisterViewModel(private val registerApiService: RegisterApiService) : ViewModel() {
+class RegisterViewModel(private val registerUseCase: RegisterUseCase) : ViewModel() {
 
     private val _registerUiState = MutableStateFlow<RegisterUiState>(RegisterUiState.Loading)
     val registerUiState: StateFlow<RegisterUiState> = _registerUiState
@@ -62,7 +62,7 @@ class RegisterViewModel(private val registerApiService: RegisterApiService) : Vi
         viewModelScope.launch {
 
             try {
-                val registerResponse = registerApiService.registerUser(
+                val registerResponse = registerUseCase.invoke(
                     registerRequest = registerRequest
                 )
                 _registerUiState.value = RegisterUiState.Success(registerResponse)

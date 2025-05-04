@@ -29,6 +29,9 @@ kotlin {
 
             implementation(libs.kotlinx.coroutines.android)
 
+            val nav_version = "2.8.9"
+            implementation("androidx.navigation:navigation-compose:$nav_version")
+
             // Ktor
             implementation(libs.ktor.client.okhttp)
         }
