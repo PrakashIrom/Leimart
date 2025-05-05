@@ -1,15 +1,15 @@
 package apui.shopping.kmp.presentation.registration
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -20,38 +20,54 @@ import apui.shopping.kmp.R
 import apui.shopping.kmp.presentation.navigation.Destination
 import apui.shopping.kmp.presentation.theme.appColor.primary
 import apui.shopping.kmp.presentation.theme.font.headerFontFamily
-import apui.shopping.kmp.utils.ui.LeimartCircularProgressIndicator
-import apui.shopping.kmp.utils.ui.LeimartText
-import apui.shopping.kmp.utils.ui.LeimartTextField
-import apui.shopping.kmp.utils.ui.LeimartToast
-import apui.shopping.kmp.utils.ui.SolidButton
+import apui.shopping.kmp.utils.uiComponents.LeimartCircularProgressIndicator
+import apui.shopping.kmp.utils.uiComponents.LeimartText
+import apui.shopping.kmp.utils.uiComponents.LeimartTextField
+import apui.shopping.kmp.utils.uiComponents.LeimartToast
+import apui.shopping.kmp.utils.uiComponents.SolidButton
 import io.ktor.http.HttpStatusCode
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun SignUpPageContent(
     viewModel: RegisterViewModel = koinViewModel(),
-    navController: NavHostController
+    navController: NavHostController,
 ) {
     val userName = viewModel.registerRequestState.value.userName
     val email = viewModel.registerRequestState.value.email
     val phoneNo = viewModel.registerRequestState.value.phoneNo
     val password = viewModel.registerRequestState.value.password
     val confirmPassword = viewModel.registerRequestState.value.confirmPassword
+    val registerUiState = viewModel.registerUiState.collectAsStateWithLifecycle().value
 
-    Column(
-        modifier = Modifier.padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        LeimartText(
-            text = stringResource(R.string.sign_up),
-            fontFamily = headerFontFamily,
-            fontSize = 25.sp,
-            fontWeight = FontWeight.Bold,
-            color = primary
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        SignUpForm(userName, email, phoneNo, password, confirmPassword, viewModel, navController)
+    Box(contentAlignment = Alignment.Center) {
+        Column(
+            modifier =
+                Modifier.padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            LeimartText(
+                text = stringResource(R.string.sign_up),
+                fontFamily = headerFontFamily,
+                fontSize = 25.sp,
+                fontWeight = FontWeight.Bold,
+                color = primary,
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            SignUpForm(
+                userName,
+                email,
+                phoneNo,
+                password,
+                confirmPassword,
+                viewModel,
+                navController,
+            )
+        }
+
+        if (registerUiState is RegisterUiState.Loading) {
+            LeimartCircularProgressIndicator()
+        }
     }
 }
 
@@ -63,20 +79,36 @@ fun SignUpForm(
     password: String,
     confirmPassword: String,
     viewModel: RegisterViewModel,
-    navController: NavHostController
+    navController: NavHostController,
+    //  modifier: Modifier,
 ) {
-    /* 1. Min length and other case in filling user name
-       2. Email validation
-       3. Check whether the input no is of length 10
-       4. Password has all the criteria
-       5. Check password equals confirm password
-       */
-    val onUserNameChange: (String) -> Unit = { newValue -> viewModel.onUserNameChange(newValue) }
-    val onEmailChange: (String) -> Unit = { newValue -> viewModel.onEmailChange(newValue) }
-    val onPhoneNoChange: (String) -> Unit = { newValue -> viewModel.onPhoneNoChange(newValue) }
-    val onPasswordChange: (String) -> Unit = { newValue -> viewModel.onPasswordChange(newValue) }
+    /* ## How copy(value = newValue) works:
+        copy() creates a new RegisterRequest with all fields identical to the original, except userName.
+        The lambda implicitly returns this new object (due to Kotlin’s last-expression-return rule).
+     */
+    val onUserNameChange: (String) -> Unit =
+        { newValue -> viewModel.updateOnChangeRegisterRequest { copy(userName = newValue) } }
+    val onEmailChange: (String) -> Unit = { newValue ->
+        viewModel.updateOnChangeRegisterRequest {
+            copy(email = newValue)
+        }
+    }
+    val onPhoneNoChange: (String) -> Unit = { newValue ->
+        viewModel.updateOnChangeRegisterRequest {
+            copy(phoneNo = newValue)
+        }
+    }
+    val onPasswordChange: (String) -> Unit = { newValue ->
+        viewModel.updateOnChangeRegisterRequest {
+            copy(password = newValue)
+        }
+    }
     val onConfirmPasswordChange: (String) -> Unit =
-        { newValue -> viewModel.onConfirmPasswordChange(newValue) }
+        { newValue ->
+            viewModel.updateOnChangeRegisterRequest {
+                copy(confirmPassword = newValue)
+            }
+        }
 
     Column {
         VerticalTextFieldSpacer(userName, onUserNameChange, stringResource(R.string.user_name))
@@ -86,14 +118,18 @@ fun SignUpForm(
         VerticalTextFieldSpacer(
             confirmPassword,
             onConfirmPasswordChange,
-            stringResource(R.string.confirm_password)
+            stringResource(R.string.confirm_password),
         )
-        RegisterAction(viewModel, navController)
     }
+    RegisterAction(viewModel, navController)
 }
 
 @Composable
-fun VerticalTextFieldSpacer(textFieldItem: String, onValueChange: (String) -> Unit, label: String) {
+fun VerticalTextFieldSpacer(
+    textFieldItem: String,
+    onValueChange: (String) -> Unit,
+    label: String,
+) {
     Column {
         LeimartTextField(
             value = textFieldItem,
@@ -105,46 +141,49 @@ fun VerticalTextFieldSpacer(textFieldItem: String, onValueChange: (String) -> Un
 }
 
 @Composable
-fun RegisterAction(viewModel: RegisterViewModel, navController: NavHostController) {
-
+fun RegisterAction(
+    viewModel: RegisterViewModel,
+    navController: NavHostController,
+) {
     val registerResponseState = viewModel.registerUiState.collectAsStateWithLifecycle().value
     val registerRequest = viewModel.registerRequestState.value
-    val isButtonClick = remember { mutableStateOf(false) }
+    val isButtonClicked = viewModel.isButtonClicked.value
+    val context = LocalContext.current
 
     SolidButton(
         onClick = {
             viewModel.registerUser(registerRequest)
-            isButtonClick.value = true
-        }, stringResource(R.string.submit),
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(63.dp)
+        },
+        stringResource(R.string.submit),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .height(63.dp),
     )
 
-    if (isButtonClick.value) {
-        when (registerResponseState) {
-            is RegisterUiState.Success -> {
-                if (registerResponseState.registerResponse.status == HttpStatusCode.OK.value) {
-                    LeimartToast("Registration Successful")
-                    /*Look for the SignUp destination in the back stack (the history of screens the user has visited)
-                      Remove all destinations that are above the SignUp screen in the stack,
-                      including SignUp screen because inclusive = true*/
-                    navController.navigate(Destination.Login.route) {
-                        popUpTo(Destination.SignUp.route) {
-                            inclusive = true
-                        }
+    when (registerResponseState) {
+        is RegisterUiState.Success -> {
+            if (registerResponseState.registerResponse.status == HttpStatusCode.OK.value) {
+                LeimartToast("Registration Successful", context = context)
+
+                /*Look for the SignUp destination in the back stack (the history of screens the user has visited)
+                  Remove all destinations that are above the SignUp screen in the stack,
+                  including SignUp screen because inclusive = true if not included*/
+                navController.navigate(Destination.Login.route) {
+                    popUpTo(Destination.SignUp.route) {
+                        inclusive = true
                     }
                 }
             }
-
-            is RegisterUiState.Loading -> {
-                LeimartCircularProgressIndicator()
-            }
-
-            is RegisterUiState.Error -> {
-                LeimartToast(toastMessage = "Error Occurred, try again!")
-            }
         }
-        isButtonClick.value = false
+
+        is RegisterUiState.Error -> {
+            LeimartToast(
+                toastMessage = "Error Occurred, try again!",
+                context = context,
+            )
+        }
+
+        else -> Unit
     }
 }

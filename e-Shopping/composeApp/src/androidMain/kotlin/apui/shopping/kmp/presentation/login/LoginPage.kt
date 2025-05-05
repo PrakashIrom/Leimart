@@ -18,28 +18,33 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import apui.shopping.kmp.R
-import apui.shopping.kmp.utils.ui.TransparentBox
+import apui.shopping.kmp.utils.uiComponents.TransparentBox
 
 @Composable
-fun LoginPage(modifier: Modifier, navController: NavHostController) {
+fun LoginPage(
+    modifier: Modifier,
+    navController: NavHostController,
+) {
     val focusManager = LocalFocusManager.current
     Box(
-        modifier = modifier
-            .clickable(
-                interactionSource = remember { MutableInteractionSource() },
-                indication = null
-            ) {
-                focusManager.clearFocus() // Clear focus when tapping outside
-            },
-        contentAlignment = Alignment.Center
+        modifier =
+            modifier
+                .clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = null,
+                ) {
+                    focusManager.clearFocus() // Clear focus when tapping outside
+                },
+        contentAlignment = Alignment.Center,
     ) {
         Image(
             painter = painterResource(R.drawable.background_image),
             contentDescription = "Background Image",
-            modifier = Modifier
-                .fillMaxSize()
-                .graphicsLayer { alpha = 0.6f },
-            contentScale = ContentScale.Crop
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .graphicsLayer { alpha = 0.6f },
+            contentScale = ContentScale.Crop,
         )
         TransparentBox(alpha = 0.05f) { LoginContent(navController = navController) }
     }

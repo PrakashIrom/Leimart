@@ -24,16 +24,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import apui.shopping.kmp.R
-import apui.shopping.kmp.presentation.theme.font.headerFontFamily
-import apui.shopping.kmp.utils.ui.LeimartText
-import apui.shopping.kmp.utils.ui.LeimartTextField
-import apui.shopping.kmp.utils.ui.SolidButton
 import apui.shopping.kmp.presentation.theme.appColor.leimartBlue
 import apui.shopping.kmp.presentation.theme.appColor.primary
+import apui.shopping.kmp.presentation.theme.font.headerFontFamily
+import apui.shopping.kmp.utils.uiComponents.LeimartText
+import apui.shopping.kmp.utils.uiComponents.LeimartTextField
+import apui.shopping.kmp.utils.uiComponents.SolidButton
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun LoginContent(viewModel: LoginViewModel = koinViewModel(), navController: NavHostController) {
+fun LoginContent(
+    viewModel: LoginViewModel = koinViewModel(),
+    navController: NavHostController,
+) {
     val formState = viewModel.formState
 
     val userMailNo = formState.value.emailOrPhone
@@ -51,7 +54,7 @@ fun LoginContent(viewModel: LoginViewModel = koinViewModel(), navController: Nav
             fontFamily = headerFontFamily,
             fontSize = 25.sp,
             fontWeight = FontWeight.Bold,
-            color = primary
+            color = primary,
         )
         Spacer(modifier = Modifier.height(16.dp))
         LoginForm(userMailNo, userPassword, onEmailOrPhoneChange, onPasswordChange)
@@ -65,13 +68,13 @@ fun LoginForm(
     userMailNo: String,
     userPassword: String,
     onEmailOrPhoneChange: (String) -> Unit,
-    onPasswordChange: (String) -> Unit
+    onPasswordChange: (String) -> Unit,
 ) {
     Column {
         LeimartTextField(
             value = userMailNo,
             onValueChange = onEmailOrPhoneChange,
-            label = stringResource(R.string.email) + '/' + stringResource(R.string.phone_no)
+            label = stringResource(R.string.email) + '/' + stringResource(R.string.phone_no),
         )
         Spacer(modifier = Modifier.height(16.dp))
         PasswordTextField(userPassword, onPasswordChange)
@@ -79,7 +82,10 @@ fun LoginForm(
 }
 
 @Composable
-fun PasswordTextField(userPassword: String, onPasswordChange: (String) -> Unit) {
+fun PasswordTextField(
+    userPassword: String,
+    onPasswordChange: (String) -> Unit,
+) {
     val isPasswordVisible = remember { mutableStateOf(false) }
 
     LeimartTextField(
@@ -88,17 +94,22 @@ fun PasswordTextField(userPassword: String, onPasswordChange: (String) -> Unit) 
         label = stringResource(R.string.password),
         trailingIcon = {
             Icon(
-                painter = painterResource(
-                    if (isPasswordVisible.value) R.drawable.show_password
-                    else R.drawable.hide_password
-                ),
+                painter =
+                    painterResource(
+                        if (isPasswordVisible.value) {
+                            R.drawable.show_password
+                        } else {
+                            R.drawable.hide_password
+                        },
+                    ),
                 contentDescription = if (isPasswordVisible.value) "Hide Password" else "Show Password",
-                modifier = Modifier
-                    .size(30.dp)
-                    .clickable { isPasswordVisible.value = !isPasswordVisible.value }
+                modifier =
+                    Modifier
+                        .size(30.dp)
+                        .clickable { isPasswordVisible.value = !isPasswordVisible.value },
             )
         },
-        visualTransformation = if (isPasswordVisible.value) VisualTransformation.None else PasswordVisualTransformation()
+        visualTransformation = if (isPasswordVisible.value) VisualTransformation.None else PasswordVisualTransformation(),
     )
 }
 
@@ -106,20 +117,23 @@ fun PasswordTextField(userPassword: String, onPasswordChange: (String) -> Unit) 
 fun LoginActions(navController: NavHostController) {
     Column {
         SolidButton(
-            {}, stringResource(R.string.submit),
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(63.dp)
+            {},
+            stringResource(R.string.submit),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .height(63.dp),
         )
         Spacer(Modifier.height(6.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.End
+            horizontalArrangement = Arrangement.End,
         ) {
             LeimartText(
                 text = "Forgot Password?",
                 color = leimartBlue,
-                fontSize = 13.sp
+                fontSize = 13.sp,
+                modifier = Modifier.clickable {},
             )
         }
     }

@@ -1,4 +1,4 @@
-package apui.shopping.kmp.utils.ui
+package apui.shopping.kmp.utils.uiComponents
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -20,25 +20,25 @@ fun LeimartTextField(
     label: String,
     modifier: Modifier = Modifier,
     trailingIcon: @Composable (() -> Unit)? = null,
-    visualTransformation: VisualTransformation? = VisualTransformation.None
+    visualTransformation: VisualTransformation? = VisualTransformation.None,
 ) {
-
     if (visualTransformation != null) {
         OutlinedTextField(
-            modifier = modifier
-                .fillMaxWidth()
-                .height(70.dp),
+            modifier =
+                modifier
+                    .fillMaxWidth()
+                    .height(70.dp),
             value = value,
             onValueChange = onValueChange,
             label = { LeimartText(label, fontFamily = bodyFontFamily, color = primary) },
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = primary,
-                unfocusedBorderColor = secondary,
-            ),
+            colors =
+                TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = primary,
+                    unfocusedBorderColor = secondary,
+                ),
             trailingIcon = trailingIcon,
             shape = RoundedCornerShape(7.dp),
-            visualTransformation = visualTransformation
+            visualTransformation = visualTransformation,
         )
     }
-
 }

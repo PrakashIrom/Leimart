@@ -13,5 +13,5 @@ data class RegisterRequest(
     val password: String = "",
     val confirmPassword: String = "",
     @SerialName("whatsApp_Notification")
-    val whatsAppNotification: Boolean = false
+    val whatsAppNotification: Boolean = false,
 )

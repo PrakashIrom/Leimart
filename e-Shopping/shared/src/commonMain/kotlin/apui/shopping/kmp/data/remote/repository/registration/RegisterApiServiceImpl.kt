@@ -9,9 +9,12 @@ import io.ktor.client.call.body
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 
-class RegisterApiServiceImpl(private val client: HttpClient) : RegisterApiService {
+class RegisterApiServiceImpl(
+    private val client: HttpClient,
+) : RegisterApiService {
     override suspend fun registerApiService(registerRequest: RegisterRequest): RegisterResponse =
-        client.post(ApiConfig.BASE_URL + ApiConfig.Endpoints.REGISTRATION) {
-            setBody(registerRequest)
-        }.body()
+        client
+            .post(ApiConfig.BASE_URL + ApiConfig.Endpoints.REGISTRATION) {
+                setBody(registerRequest)
+            }.body()
 }

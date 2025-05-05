@@ -1,6 +1,5 @@
 package apui.shopping.kmp.presentation.navigation
 
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -12,14 +11,15 @@ import apui.shopping.kmp.presentation.registration.SignUpPage
 @Composable
 fun AppNavHost(
     navController: NavHostController,
-    startDestination: String
+    startDestination: String,
+    modifier: Modifier = Modifier,
 ) {
     NavHost(navController = navController, startDestination = startDestination) {
         composable(Destination.Login.route) {
-            LoginPage(modifier = Modifier.fillMaxSize(), navController)
+            LoginPage(modifier = modifier, navController)
         }
         composable(Destination.SignUp.route) {
-            SignUpPage(modifier = Modifier.fillMaxSize(), navController)
+            SignUpPage(modifier = modifier, navController)
         }
     }
 }
