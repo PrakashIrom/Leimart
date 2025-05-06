@@ -1,5 +1,6 @@
 package apui.shopping.kmp.presentation.registration
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -69,7 +70,8 @@ class RegisterViewModel(
                 _registerUiState.value = RegisterUiState.Success(registerResponse)
                 isButtonClicked.value = false
             } catch (e: Exception) {
-                RegisterUiState.Error(e.message.toString())
+                _registerUiState.value = RegisterUiState.Error(e.message.toString())
+                Log.e("RegisterViewModel", e.message.toString())
                 isButtonClicked.value = false
             }
         }

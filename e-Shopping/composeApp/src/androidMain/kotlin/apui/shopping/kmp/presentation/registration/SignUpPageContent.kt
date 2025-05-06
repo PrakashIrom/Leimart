@@ -39,6 +39,7 @@ fun SignUpPageContent(
     val password = viewModel.registerRequestState.value.password
     val confirmPassword = viewModel.registerRequestState.value.confirmPassword
     val registerUiState = viewModel.registerUiState.collectAsStateWithLifecycle().value
+    val isButtonClicked = viewModel.isButtonClicked.value
 
     Box(contentAlignment = Alignment.Center) {
         Column(
@@ -65,7 +66,10 @@ fun SignUpPageContent(
             )
         }
 
-        if (registerUiState is RegisterUiState.Loading) {
+        // Loading's LeimartCircularProgressIndicator is shown here instead of showing it in the composable
+        // @RegisterFunction function because of UI issue i.e, if LeimartCircularProgressIndicator
+        // is not called from here CircularProgressIndicator is not able to align directly at the center
+        if (registerUiState is RegisterUiState.Loading && isButtonClicked) {
             LeimartCircularProgressIndicator()
         }
     }
@@ -80,7 +84,6 @@ fun SignUpForm(
     confirmPassword: String,
     viewModel: RegisterViewModel,
     navController: NavHostController,
-    //  modifier: Modifier,
 ) {
     /* ## How copy(value = newValue) works:
         copy() creates a new RegisterRequest with all fields identical to the original, except userName.
@@ -147,7 +150,6 @@ fun RegisterAction(
 ) {
     val registerResponseState = viewModel.registerUiState.collectAsStateWithLifecycle().value
     val registerRequest = viewModel.registerRequestState.value
-    val isButtonClicked = viewModel.isButtonClicked.value
     val context = LocalContext.current
 
     SolidButton(
@@ -167,8 +169,8 @@ fun RegisterAction(
                 LeimartToast("Registration Successful", context = context)
 
                 /*Look for the SignUp destination in the back stack (the history of screens the user has visited)
-                  Remove all destinations that are above the SignUp screen in the stack,
-                  including SignUp screen because inclusive = true if not included*/
+              Remove all destinations that are above the SignUp screen in the stack,
+              including SignUp screen because inclusive = true if not included*/
                 navController.navigate(Destination.Login.route) {
                     popUpTo(Destination.SignUp.route) {
                         inclusive = true
@@ -178,10 +180,7 @@ fun RegisterAction(
         }
 
         is RegisterUiState.Error -> {
-            LeimartToast(
-                toastMessage = "Error Occurred, try again!",
-                context = context,
-            )
+            LeimartToast("Error occurred, try again!", context = context)
         }
 
         else -> Unit
