@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import apui.shopping.kmp.presentation.theme.appColor.primary
+import apui.leimart.cmp.presentation.theme.appColor.primary
 
 @Composable
 fun TransparentBox(

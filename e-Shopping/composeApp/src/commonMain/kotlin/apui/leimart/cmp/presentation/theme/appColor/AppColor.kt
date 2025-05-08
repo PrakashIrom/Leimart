@@ -1,4 +1,4 @@
-package apui.shopping.kmp.presentation.theme.appColor
+package apui.leimart.cmp.presentation.theme.appColor
 
 import androidx.compose.ui.graphics.Color
 

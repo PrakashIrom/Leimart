@@ -21,12 +21,12 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import apui.leimart.cmp.presentation.theme.appColor.leimartBlue
+import apui.leimart.cmp.presentation.theme.appColor.primary
+import apui.leimart.cmp.presentation.theme.font.headerFontFamily
 import apui.leimart.cmp.utils.uiComponents.LeimartText
 import apui.leimart.cmp.utils.uiComponents.LeimartTextField
 import apui.leimart.cmp.utils.uiComponents.SolidButton
-import apui.shopping.kmp.presentation.theme.appColor.leimartBlue
-import apui.shopping.kmp.presentation.theme.appColor.primary
-import apui.shopping.kmp.presentation.theme.font.headerFontFamily
 import e_shopping.composeapp.generated.resources.Res
 import e_shopping.composeapp.generated.resources.email
 import e_shopping.composeapp.generated.resources.hide_password

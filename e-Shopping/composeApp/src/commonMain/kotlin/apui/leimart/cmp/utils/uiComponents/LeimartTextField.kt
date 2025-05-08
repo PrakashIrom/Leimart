@@ -9,9 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import apui.shopping.kmp.presentation.theme.appColor.primary
-import apui.shopping.kmp.presentation.theme.appColor.secondary
-import apui.shopping.kmp.presentation.theme.font.bodyFontFamily
+import apui.leimart.cmp.presentation.theme.appColor.primary
+import apui.leimart.cmp.presentation.theme.appColor.secondary
+import apui.leimart.cmp.presentation.theme.font.bodyFontFamily
 
 @Composable
 fun LeimartTextField(

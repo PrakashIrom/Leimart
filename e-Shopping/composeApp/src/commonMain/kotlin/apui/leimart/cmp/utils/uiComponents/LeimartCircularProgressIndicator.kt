@@ -7,7 +7,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.unit.dp
-import apui.shopping.kmp.presentation.theme.appColor.secondary
+import apui.leimart.cmp.presentation.theme.appColor.secondary
 
 @Composable
 fun LeimartCircularProgressIndicator() {

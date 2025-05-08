@@ -7,8 +7,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.TextUnit
-import apui.shopping.kmp.presentation.theme.appColor.primary
-import apui.shopping.kmp.presentation.theme.font.bodyFontFamily
+import apui.leimart.cmp.presentation.theme.appColor.primary
+import apui.leimart.cmp.presentation.theme.font.bodyFontFamily
 
 @Composable
 fun LeimartText(

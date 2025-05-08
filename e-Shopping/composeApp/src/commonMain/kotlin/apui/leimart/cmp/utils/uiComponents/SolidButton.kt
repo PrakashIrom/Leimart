@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import apui.shopping.kmp.presentation.theme.appColor.secondary
+import apui.leimart.cmp.presentation.theme.appColor.secondary
 
 @Composable
 fun SolidButton(

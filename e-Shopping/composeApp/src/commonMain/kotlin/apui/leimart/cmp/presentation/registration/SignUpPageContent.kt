@@ -10,19 +10,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import apui.leimart.cmp.presentation.navigation.Destination
+import apui.leimart.cmp.presentation.theme.appColor.primary
+import apui.leimart.cmp.presentation.theme.font.headerFontFamily
 import apui.leimart.cmp.utils.uiComponents.LeimartCircularProgressIndicator
 import apui.leimart.cmp.utils.uiComponents.LeimartText
 import apui.leimart.cmp.utils.uiComponents.LeimartTextField
 import apui.leimart.cmp.utils.uiComponents.LeimartToast
 import apui.leimart.cmp.utils.uiComponents.SolidButton
-import apui.shopping.kmp.presentation.theme.appColor.primary
-import apui.shopping.kmp.presentation.theme.font.headerFontFamily
 import e_shopping.composeapp.generated.resources.Res
 import e_shopping.composeapp.generated.resources.confirm_password
 import e_shopping.composeapp.generated.resources.email
@@ -157,7 +156,6 @@ fun RegisterAction(
 ) {
     val registerResponseState = viewModel.registerUiState.collectAsState().value
     val registerRequest = viewModel.registerRequestState.value
-    val context = LocalContext.current
 
     SolidButton(
         onClick = {
@@ -173,8 +171,6 @@ fun RegisterAction(
     when (registerResponseState) {
         is RegisterUiState.Success -> {
             if (registerResponseState.registerResponse.status == HttpStatusCode.OK.value) {
-                LeimartToast("Registration Successful", context = context)
-
                 /*Look for the SignUp destination in the back stack (the history of screens the user has visited)
               Remove all destinations that are above the SignUp screen in the stack,
               including SignUp screen because inclusive = true if not included*/
@@ -187,7 +183,7 @@ fun RegisterAction(
         }
 
         is RegisterUiState.Error -> {
-            LeimartToast(registerResponseState.message, context = context)
+            LeimartToast("Error is there, try again!")
         }
 
         else -> Unit
