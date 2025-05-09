@@ -11,7 +11,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import apui.leimart.cmp.presentation.theme.appColor.primary
 import apui.leimart.cmp.presentation.theme.appColor.secondary
-import apui.leimart.cmp.presentation.theme.font.bodyFontFamily
+// import apui.leimart.cmp.presentation.theme.font.bodyFontFamily
 
 @Composable
 fun LeimartTextField(
@@ -30,7 +30,13 @@ fun LeimartTextField(
                     .height(70.dp),
             value = value,
             onValueChange = onValueChange,
-            label = { LeimartText(label, fontFamily = bodyFontFamily, color = primary) },
+            label = {
+                LeimartText(
+                    label,
+                    // fontFamily = bodyFontFamily,
+                    color = primary,
+                )
+            },
             colors =
                 TextFieldDefaults.outlinedTextFieldColors(
                     focusedBorderColor = primary,

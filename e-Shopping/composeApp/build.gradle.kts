@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -19,6 +20,7 @@ kotlin {
     /*androidLibrary {
         experimentalProperties["android.experimental.kmp.enableAndroidResources"] = true
     }*/
+    val xcFramework = XCFramework()
 
     listOf(
         iosX64(),
@@ -28,6 +30,7 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
+            xcFramework.add(this)
         }
     }
 
@@ -36,7 +39,6 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
-            implementation("androidx.compose.ui:ui-text-google-fonts:1.8.1")
 
             // Koin for di
             implementation("io.insert-koin:koin-core:4.0.1")
