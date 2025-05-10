@@ -11,10 +11,12 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import apui.leimart.cmp.presentation.theme.appColor.primary
 import apui.leimart.cmp.presentation.theme.appColor.secondary
-// import apui.leimart.cmp.presentation.theme.font.bodyFontFamily
+import apui.leimart.cmp.presentation.theme.typography.GetBodyResource
+import org.jetbrains.compose.resources.FontResource
 
 @Composable
 fun LeimartTextField(
+    fontResource: FontResource = GetBodyResource.regularInter,
     onValueChange: (String) -> Unit,
     value: String,
     label: String,
@@ -33,8 +35,8 @@ fun LeimartTextField(
             label = {
                 LeimartText(
                     label,
-                    // fontFamily = bodyFontFamily,
-                    color = primary,
+                    fontResource = fontResource,
+                    color = primary.copy(alpha = 0.7f),
                 )
             },
             colors =

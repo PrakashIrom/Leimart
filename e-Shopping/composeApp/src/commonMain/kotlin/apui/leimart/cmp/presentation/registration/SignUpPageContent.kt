@@ -10,13 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import apui.leimart.cmp.presentation.navigation.Destination
 import apui.leimart.cmp.presentation.theme.appColor.primary
-// import apui.leimart.cmp.presentation.theme.font.headerFontFamily
+import apui.leimart.cmp.presentation.theme.typography.GetBodyResource
+import apui.leimart.cmp.presentation.theme.typography.GetHeaderResource
 import apui.leimart.cmp.utils.uiComponents.LeimartCircularProgressIndicator
 import apui.leimart.cmp.utils.uiComponents.LeimartText
 import apui.leimart.cmp.utils.uiComponents.LeimartTextField
@@ -55,9 +55,8 @@ fun SignUpPageContent(
         ) {
             LeimartText(
                 text = stringResource(Res.string.sign_up),
-                // fontFamily = headerFontFamily,
+                fontResource = GetHeaderResource.playfairDisplayBold,
                 fontSize = 25.sp,
-                fontWeight = FontWeight.Bold,
                 color = primary,
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -141,6 +140,7 @@ fun VerticalTextFieldSpacer(
 ) {
     Column {
         LeimartTextField(
+            fontResource = GetBodyResource.regularInter,
             value = textFieldItem,
             onValueChange = onValueChange,
             label = label,

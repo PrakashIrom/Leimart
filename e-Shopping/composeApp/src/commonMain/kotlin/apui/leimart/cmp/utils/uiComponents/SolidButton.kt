@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import apui.leimart.cmp.presentation.theme.appColor.secondary
+import apui.leimart.cmp.presentation.theme.typography.GetBodyResource
 
 @Composable
 fun SolidButton(
@@ -22,8 +23,9 @@ fun SolidButton(
         colors = ButtonDefaults.buttonColors(backgroundColor = secondary),
     ) {
         LeimartText(
-            text,
-            fontSize = 17.sp,
+            fontResource = GetBodyResource.blackInter,
+            text = text,
+            fontSize = 18.sp,
         )
     }
 }

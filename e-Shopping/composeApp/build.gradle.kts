@@ -42,14 +42,9 @@ kotlin {
 
             // Koin for di
             implementation("io.insert-koin:koin-core:4.0.1")
-            implementation("io.insert-koin:koin-android:3.5.0")
-            implementation("io.insert-koin:koin-androidx-compose:3.5.0")
-            implementation("io.insert-koin:koin-compose-viewmodel:4.0.1")
+            implementation("io.insert-koin:koin-android:4.0.1")
 
-            implementation(libs.kotlinx.coroutines.android)
-
-            val nav_version = "2.8.9"
-            implementation("androidx.navigation:navigation-compose:$nav_version")
+            // implementation(libs.kotlinx.coroutines.android)
 
             // Ktor
             implementation(libs.ktor.client.okhttp)

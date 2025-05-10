@@ -23,7 +23,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import apui.leimart.cmp.presentation.theme.appColor.leimartBlue
 import apui.leimart.cmp.presentation.theme.appColor.primary
-// import apui.leimart.cmp.presentation.theme.font.headerFontFamily
+import apui.leimart.cmp.presentation.theme.typography.GetBodyResource
+import apui.leimart.cmp.presentation.theme.typography.GetHeaderResource
 import apui.leimart.cmp.utils.uiComponents.LeimartText
 import apui.leimart.cmp.utils.uiComponents.LeimartTextField
 import apui.leimart.cmp.utils.uiComponents.SolidButton
@@ -58,7 +59,7 @@ fun LoginContent(
     Column(modifier = Modifier.padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         LeimartText(
             text = stringResource(Res.string.login),
-            // fontFamily = headerFontFamily,
+            fontResource = GetHeaderResource.playfairDisplayBold,
             fontSize = 25.sp,
             fontWeight = FontWeight.Bold,
             color = primary,
@@ -137,6 +138,7 @@ fun LoginActions(navController: NavHostController) {
             horizontalArrangement = Arrangement.End,
         ) {
             LeimartText(
+                fontResource = GetBodyResource.regularInter,
                 text = "Forgot Password?",
                 color = leimartBlue,
                 fontSize = 13.sp,
