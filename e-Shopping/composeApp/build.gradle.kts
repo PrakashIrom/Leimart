@@ -17,9 +17,6 @@ kotlin {
         }
     }
 
-    /*androidLibrary {
-        experimentalProperties["android.experimental.kmp.enableAndroidResources"] = true
-    }*/
     val xcFramework = XCFramework()
 
     listOf(
@@ -44,9 +41,6 @@ kotlin {
             implementation("io.insert-koin:koin-core:4.0.1")
             implementation("io.insert-koin:koin-android:4.0.1")
 
-            // implementation(libs.kotlinx.coroutines.android)
-
-            // Ktor
             implementation(libs.ktor.client.okhttp)
         }
         commonMain.dependencies {
@@ -57,6 +51,7 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
 
+            // KMP supported ViewModel
             implementation(libs.androidx.lifecycle.viewmodel)
 
             implementation("io.insert-koin:koin-core:4.0.1")
