@@ -23,7 +23,8 @@ fun TransparentBox(
         modifier =
             Modifier
                 .clip(RoundedCornerShape(16.dp))
-                .width(310.dp),
+                .width(310.dp)
+                .background(color = primary.copy(alpha = alpha)),
     ) {
         Box(
             modifier =

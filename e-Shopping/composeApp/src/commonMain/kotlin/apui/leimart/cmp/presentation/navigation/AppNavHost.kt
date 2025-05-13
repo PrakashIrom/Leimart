@@ -1,5 +1,6 @@
 package apui.leimart.cmp.presentation.navigation
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -12,14 +13,13 @@ import apui.leimart.cmp.presentation.registration.SignUpPage
 fun AppNavHost(
     navController: NavHostController,
     startDestination: String,
-    modifier: Modifier = Modifier,
 ) {
     NavHost(navController = navController, startDestination = startDestination) {
         composable(Destination.Login.route) {
-            LoginPage(modifier = modifier, navController)
+            LoginPage(Modifier.fillMaxSize(), navController)
         }
         composable(Destination.SignUp.route) {
-            SignUpPage(modifier = modifier, navController)
+            SignUpPage(navController)
         }
     }
 }

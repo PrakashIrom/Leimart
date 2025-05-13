@@ -1,25 +1,26 @@
 package apui.leimart.cmp
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.material.MaterialTheme
-import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import apui.leimart.cmp.presentation.navigation.AppNavHost
-import apui.leimart.cmp.presentation.navigation.Destination
+import apui.leimart.cmp.presentation.entry.AppScaffold
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Needs to implement this separately for IOS
+        enableEdgeToEdge(statusBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT))
         setContent {
             val navController = rememberNavController()
             MaterialTheme {
-                AppNavHost(
+                AppScaffold(
                     navController = navController,
-                    startDestination = Destination.SignUp.route,
-                    modifier = Modifier.fillMaxSize(),
                 )
             }
         }

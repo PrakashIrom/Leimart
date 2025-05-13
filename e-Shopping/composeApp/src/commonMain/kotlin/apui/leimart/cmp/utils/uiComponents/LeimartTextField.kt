@@ -1,7 +1,5 @@
 package apui.leimart.cmp.utils.uiComponents
 
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.TextFieldDefaults
@@ -27,9 +25,7 @@ fun LeimartTextField(
     if (visualTransformation != null) {
         OutlinedTextField(
             modifier =
-                modifier
-                    .fillMaxWidth()
-                    .height(70.dp),
+            modifier,
             value = value,
             onValueChange = onValueChange,
             label = {

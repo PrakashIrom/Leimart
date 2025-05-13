@@ -1,11 +1,13 @@
 package apui.leimart.cmp.presentation.registration
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -47,36 +49,38 @@ fun SignUpPageContent(
     val registerUiState = viewModel.registerUiState.collectAsState().value
     val isButtonClicked = viewModel.isButtonClicked.value
 
-    Box(contentAlignment = Alignment.Center) {
-        Column(
-            modifier =
-                Modifier.padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            LeimartText(
-                text = stringResource(Res.string.sign_up),
-                fontResource = GetHeaderResource.playfairDisplayBold,
-                fontSize = 25.sp,
-                color = primary,
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            SignUpForm(
-                userName,
-                email,
-                phoneNo,
-                password,
-                confirmPassword,
-                viewModel,
-                navController,
-            )
-        }
+    Column(
+        modifier =
+            Modifier.padding(16.dp).fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+    ) {
+        LeimartText(
+            text = stringResource(Res.string.sign_up),
+            fontResource = GetHeaderResource.playfairDisplayBold,
+            fontSize = 25.sp,
+            color = primary,
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        SignUpForm(
+            userName,
+            email,
+            phoneNo,
+            password,
+            confirmPassword,
+            viewModel,
+            navController,
+        )
+    }
 
-        // Loading's LeimartCircularProgressIndicator is shown here instead of showing it in the composable
-        // @RegisterFunction function because of UI issue i.e, if LeimartCircularProgressIndicator
-        // is not called from here CircularProgressIndicator is not able to align directly at the center
-        if (registerUiState is RegisterUiState.Loading && isButtonClicked) {
-            LeimartCircularProgressIndicator()
-        }
+    // Loading's LeimartCircularProgressIndicator is shown here instead of showing it in the composable
+    // @RegisterFunction function because of UI issue i.e, if LeimartCircularProgressIndicator
+    // is not called from here CircularProgressIndicator is not able to align directly at the center
+    if (registerUiState is RegisterUiState.Loading && isButtonClicked) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center,
+        ) { LeimartCircularProgressIndicator() }
     }
 }
 
@@ -128,8 +132,8 @@ fun SignUpForm(
             onConfirmPasswordChange,
             stringResource(Res.string.confirm_password),
         )
+        RegisterAction(viewModel, navController)
     }
-    RegisterAction(viewModel, navController)
 }
 
 @Composable
@@ -144,6 +148,10 @@ fun VerticalTextFieldSpacer(
             value = textFieldItem,
             onValueChange = onValueChange,
             label = label,
+            modifier =
+                Modifier
+                    .height(70.dp)
+                    .width(310.dp),
         )
         Spacer(modifier = Modifier.height(16.dp))
     }
@@ -164,8 +172,8 @@ fun RegisterAction(
         stringResource(Res.string.submit),
         modifier =
             Modifier
-                .fillMaxWidth()
-                .height(63.dp),
+                .height(70.dp)
+                .width(311.dp),
     )
 
     when (registerResponseState) {

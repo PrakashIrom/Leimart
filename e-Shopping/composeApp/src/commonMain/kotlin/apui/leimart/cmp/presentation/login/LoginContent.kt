@@ -5,10 +5,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -56,8 +58,15 @@ fun LoginContent(
         viewModel.onPasswordChange(newValue)
     }
 
-    Column(modifier = Modifier.padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(
+        modifier = Modifier.padding(16.dp).fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
         LeimartText(
+            modifier =
+                Modifier
+                    .height(70.dp)
+                    .width(310.dp),
             text = stringResource(Res.string.login),
             fontResource = GetHeaderResource.playfairDisplayBold,
             fontSize = 25.sp,
@@ -80,6 +89,10 @@ fun LoginForm(
 ) {
     Column {
         LeimartTextField(
+            modifier =
+                Modifier
+                    .height(70.dp)
+                    .width(310.dp),
             value = userMailNo,
             onValueChange = onEmailOrPhoneChange,
             label = stringResource(Res.string.email) + '/' + stringResource(Res.string.phone_no),
@@ -97,6 +110,10 @@ fun PasswordTextField(
     val isPasswordVisible = remember { mutableStateOf(false) }
 
     LeimartTextField(
+        modifier =
+            Modifier
+                .height(70.dp)
+                .width(310.dp),
         value = userPassword,
         onValueChange = onPasswordChange,
         label = stringResource(Res.string.password),
@@ -129,8 +146,8 @@ fun LoginActions(navController: NavHostController) {
             stringResource(Res.string.submit),
             modifier =
                 Modifier
-                    .fillMaxWidth()
-                    .height(63.dp),
+                    .height(70.dp)
+                    .width(311.dp),
         )
         Spacer(Modifier.height(6.dp))
         Row(
