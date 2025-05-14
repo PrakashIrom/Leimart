@@ -21,5 +21,7 @@ fun AppNavHost(
         composable(Destination.SignUp.route) {
             SignUpPage(navController)
         }
+        composable(Destination.Home.route){
+        }
     }
 }

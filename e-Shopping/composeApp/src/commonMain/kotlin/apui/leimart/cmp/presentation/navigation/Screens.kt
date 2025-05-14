@@ -11,4 +11,5 @@ enum class Screens(
 ) {
     LOGIN(Res.string.login),
     SIGN_UP(Res.string.sign_up),
+    HOME(Res.string.home)
 }
