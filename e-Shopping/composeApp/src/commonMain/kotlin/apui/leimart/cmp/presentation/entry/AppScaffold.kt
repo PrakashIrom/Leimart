@@ -12,11 +12,11 @@ import apui.leimart.cmp.utils.uiComponents.LeimartTopBar
 fun AppScaffold(navController: NavHostController) {
     Scaffold(
         topBar = { LeimartTopBar(navController) },
-        bottomBar = { LeimartBottomBar() },
+        bottomBar = { LeimartBottomBar(navController) },
     ) {
         AppNavHost(
             navController = navController,
-            startDestination = Destination.SignUp.route,
+            startDestination = Destination.Home.route,
         )
     }
 }
