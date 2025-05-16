@@ -19,12 +19,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import apui.leimart.cmp.presentation.navigation.Destination
 import apui.leimart.cmp.presentation.theme.appColor.primary
 import e_shopping.composeapp.generated.resources.Res
-import e_shopping.composeapp.generated.resources.account
 import e_shopping.composeapp.generated.resources.home_page
-import e_shopping.composeapp.generated.resources.notification_bell
-import e_shopping.composeapp.generated.resources.ringing
 import e_shopping.composeapp.generated.resources.search
-import e_shopping.composeapp.generated.resources.show_password
 import e_shopping.composeapp.generated.resources.user
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
@@ -65,7 +61,8 @@ fun HorizontalIconResourceBottom(resource: DrawableResource, contentDescription:
     Icon(
         painter = painterResource(resource),
         contentDescription = contentDescription,
-        modifier = Modifier.size(30.dp).clickable { },
+        modifier = Modifier.size(30.dp).clickable {
+        },
         tint = primary,
     )
 }
