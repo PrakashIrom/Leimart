@@ -74,7 +74,7 @@ fun HorizontalPagerItem(
 ) {
     Card(
         modifier = modifier.padding(start = 15.dp, top = 15.dp, end = 15.dp, bottom = 5.dp)
-            .size(height = 200.dp, width = 100.dp),
+            .size(height = 200.dp),
         shape = RoundedCornerShape(10.dp)
     ) {
         AsyncImage(
