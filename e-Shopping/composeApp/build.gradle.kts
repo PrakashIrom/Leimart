@@ -62,6 +62,7 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
 
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0-beta01")
+            implementation("io.coil-kt.coil3:coil-compose:3.2.0")
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)

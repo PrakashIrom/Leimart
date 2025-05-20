@@ -10,6 +10,7 @@ import androidx.compose.foundation.interaction.collectIsDraggedAsState
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
@@ -25,6 +26,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
+import e_shopping.composeapp.generated.resources.Res
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import org.jetbrains.compose.resources.DrawableResource
@@ -34,7 +37,7 @@ import org.jetbrains.compose.resources.painterResource
 fun AutoHorizontalPager(
     modifier: Modifier = Modifier,
     pagerState: PagerState,
-    loopedItems: List<DrawableResource>
+    loopedItems: List<String>
 ) {
 
     val pageInteractionSource = remember { MutableInteractionSource() }
@@ -74,7 +77,7 @@ fun AutoHorizontalPager(
 fun HorizontalPagerItem(
     page: Int,
     pageInteractionSource: MutableInteractionSource,
-    pageItems: List<DrawableResource>,
+    pageItems: List<String>,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -82,14 +85,14 @@ fun HorizontalPagerItem(
             .size(height = 200.dp, width = 300.dp),
         shape = RoundedCornerShape(10.dp)
     ) {
-        Image(
-            painter = painterResource(pageItems[page]),
+        AsyncImage(
+            model = Res.getUri(pageItems[page]),
             contentDescription = "Image",
-            contentScale = ContentScale.Crop,
-            modifier = modifier.clickable(
+            contentScale = ContentScale.FillBounds,
+            modifier = modifier.height(40.dp).fillMaxWidth().clickable(
                 indication = LocalIndication.current,
                 interactionSource = pageInteractionSource
-            ) { }
+            ) {}
         )
     }
 }

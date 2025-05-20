@@ -19,7 +19,7 @@ import apui.leimart.cmp.presentation.home.horizontalPager.PageIndicator
 import org.jetbrains.compose.resources.DrawableResource
 
 @Composable
-fun HomePage(pageItems: List<DrawableResource>) {
+fun HomePage(pageItems: List<String>) {
     val loopedItems = remember { List(1000) { pageItems[it % pageItems.size] } }
     val pagerState = rememberPagerState(initialPage = 500, pageCount = { loopedItems.size })
     /*Box(
