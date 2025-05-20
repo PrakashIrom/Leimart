@@ -74,14 +74,14 @@ fun HorizontalPagerItem(
 ) {
     Card(
         modifier = modifier.padding(start = 15.dp, top = 15.dp, end = 15.dp, bottom = 5.dp)
-            .size(height = 200.dp, width = 300.dp),
+            .size(height = 200.dp, width = 100.dp),
         shape = RoundedCornerShape(10.dp)
     ) {
         AsyncImage(
             model = Res.getUri(pageItems[page]),
             contentDescription = "Image",
             contentScale = ContentScale.FillBounds,
-            modifier = modifier.height(40.dp).fillMaxWidth().clickable(
+            modifier = Modifier.clickable(
                 indication = LocalIndication.current,
                 interactionSource = pageInteractionSource
             ) {}
