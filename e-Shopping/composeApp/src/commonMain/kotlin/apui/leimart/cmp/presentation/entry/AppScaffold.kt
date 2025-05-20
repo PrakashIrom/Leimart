@@ -13,10 +13,11 @@ fun AppScaffold(navController: NavHostController) {
     Scaffold(
         topBar = { LeimartTopBar(navController) },
         bottomBar = { LeimartBottomBar(navController) },
-    ) {
+    ) { paddingValues ->
         AppNavHost(
             navController = navController,
             startDestination = Destination.Home.route,
+            paddingValues = paddingValues
         )
     }
 }

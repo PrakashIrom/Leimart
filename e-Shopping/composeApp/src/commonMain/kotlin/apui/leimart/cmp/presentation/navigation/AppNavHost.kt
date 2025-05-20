@@ -1,5 +1,6 @@
 package apui.leimart.cmp.presentation.navigation
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -7,7 +8,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import apui.leimart.cmp.presentation.home.HomePage
-import apui.leimart.cmp.presentation.home.horizontalPager.pagerItems
 import apui.leimart.cmp.presentation.login.LoginPage
 import apui.leimart.cmp.presentation.registration.SignUpPage
 
@@ -15,6 +15,7 @@ import apui.leimart.cmp.presentation.registration.SignUpPage
 fun AppNavHost(
     navController: NavHostController,
     startDestination: String,
+    paddingValues: PaddingValues,
 ) {
     NavHost(navController = navController, startDestination = startDestination) {
         composable(Destination.Login.route) {
@@ -24,7 +25,7 @@ fun AppNavHost(
             SignUpPage(navController)
         }
         composable(Destination.Home.route) {
-            HomePage(pageItems = pagerItems)
+            HomePage()
         }
     }
 }

@@ -1,8 +1,8 @@
 package apui.leimart.cmp.utils.uiComponents
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,11 +26,8 @@ import apui.leimart.cmp.presentation.theme.appColor.primary
 import apui.leimart.cmp.presentation.theme.typography.GetHeaderResource
 import e_shopping.composeapp.generated.resources.Res
 import e_shopping.composeapp.generated.resources.home
-import e_shopping.composeapp.generated.resources.home_page
 import e_shopping.composeapp.generated.resources.notification_bell
-import e_shopping.composeapp.generated.resources.ringing
 import e_shopping.composeapp.generated.resources.shopping_bag
-import e_shopping.composeapp.generated.resources.show_password
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -44,31 +41,39 @@ fun LeimartTopBar(navController: NavHostController) {
             ?.route
     val screenTitle = Screens.entries.find { it.name == currentRoute }?.title ?: Res.string.home
 
-    TopAppBar(
-        navigationIcon = {
-            /*Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier.fillMaxWidth()
-            ) {*/
+    Column(
+        modifier = Modifier.fillMaxWidth().padding(top = 15.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        TopAppBar(
+            navigationIcon = {
                 LeimartText(
                     stringResource(screenTitle),
                     fontResource = GetHeaderResource.playfairDisplaySemiBoldItalic,
                     fontSize = 20.sp
                 )
-           /* }*/
-        },
-        backgroundColor = MaterialTheme.colors.background,
-        title = {
+            },
+            backgroundColor = MaterialTheme.colors.background,
+            title = {
 
-        },
-        actions = {
+            },
+            actions = {
+                HorizontalIconResourceTop(Res.drawable.notification_bell, "Notification")
+                HorizontalIconResourceTop(Res.drawable.shopping_bag, "Shopping bag")
+            },
+            elevation = 0.dp,
+            modifier = Modifier.height(60.dp).padding(top = 26.dp, start = 16.dp),
+        )
+        LeimartTextField(
+            onValueChange = {}, label = "", value = "", modifier =
+                Modifier
+                    .height(60.dp)
+                    .fillMaxWidth()
+                    .padding(horizontal = 18.dp)
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+    }
 
-            HorizontalIconResourceTop(Res.drawable.notification_bell, "Notification")
-            HorizontalIconResourceTop(Res.drawable.shopping_bag, "Shopping bag")
-        },
-        elevation = 0.dp,
-        modifier = Modifier.height(80.dp).padding(top = 26.dp, start = 16.dp),
-    )
 }
 
 @Composable

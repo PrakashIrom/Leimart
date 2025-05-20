@@ -19,13 +19,14 @@ fun LeimartTextField(
     value: String,
     label: String,
     modifier: Modifier = Modifier,
+    leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
     visualTransformation: VisualTransformation? = VisualTransformation.None,
 ) {
     if (visualTransformation != null) {
         OutlinedTextField(
             modifier =
-            modifier,
+                modifier,
             value = value,
             onValueChange = onValueChange,
             label = {
@@ -40,6 +41,7 @@ fun LeimartTextField(
                     focusedBorderColor = primary,
                     unfocusedBorderColor = secondary,
                 ),
+            leadingIcon = leadingIcon,
             trailingIcon = trailingIcon,
             shape = RoundedCornerShape(7.dp),
             visualTransformation = visualTransformation,

@@ -12,7 +12,5 @@ fun MainViewController() =
         val navController = rememberNavController()
         AppScaffold(
             navController = navController,
-            startDestination = Destination.SignUp.route,
-            modifier = Modifier.fillMaxSize(),
         )
     }
