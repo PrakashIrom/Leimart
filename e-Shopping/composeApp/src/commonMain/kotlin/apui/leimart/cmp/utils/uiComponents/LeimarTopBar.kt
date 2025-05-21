@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import apui.leimart.cmp.presentation.home.searchItem.SearchItem
 import apui.leimart.cmp.presentation.navigation.Screens
 import apui.leimart.cmp.presentation.theme.appColor.primary
 import apui.leimart.cmp.presentation.theme.typography.GetHeaderResource
@@ -64,14 +65,7 @@ fun LeimartTopBar(navController: NavHostController) {
             elevation = 0.dp,
             modifier = Modifier.height(60.dp).padding(top = 26.dp, start = 16.dp),
         )
-        LeimartTextField(
-            onValueChange = {}, label = "", value = "", modifier =
-                Modifier
-                    .height(60.dp)
-                    .fillMaxWidth()
-                    .padding(horizontal = 18.dp)
-        )
-        Spacer(modifier = Modifier.height(10.dp))
+        SearchItem()
     }
 
 }
