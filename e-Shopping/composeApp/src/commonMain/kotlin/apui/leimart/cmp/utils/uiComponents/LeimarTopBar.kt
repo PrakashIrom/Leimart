@@ -63,8 +63,9 @@ fun LeimartTopBar(navController: NavHostController) {
                 HorizontalIconResourceTop(Res.drawable.shopping_bag, "Shopping bag")
             },
             elevation = 0.dp,
-            modifier = Modifier.height(60.dp).padding(top = 26.dp, start = 16.dp),
+            modifier = Modifier.height(70.dp).padding(top = 26.dp, start = 16.dp),
         )
+        Spacer(modifier = Modifier.height(5.dp))
         SearchItem()
     }
 

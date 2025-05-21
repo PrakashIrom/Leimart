@@ -1,9 +1,11 @@
 package apui.leimart.cmp.utils.uiComponents
 
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
@@ -18,10 +20,12 @@ fun LeimartTextField(
     onValueChange: (String) -> Unit,
     value: String,
     label: String,
+    shape: RoundedCornerShape = RoundedCornerShape(7.dp),
     modifier: Modifier = Modifier,
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
     visualTransformation: VisualTransformation? = VisualTransformation.None,
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
 ) {
     if (visualTransformation != null) {
         OutlinedTextField(
@@ -29,7 +33,17 @@ fun LeimartTextField(
                 modifier,
             value = value,
             onValueChange = onValueChange,
-            label = {
+            /*
+                        */
+            /*label = {
+                            LeimartText(
+                                label,
+                                fontResource = fontResource,
+                                color = primary.copy(alpha = 0.7f),
+                            )
+                        }*/
+            /*,*/
+            placeholder = {
                 LeimartText(
                     label,
                     fontResource = fontResource,
@@ -43,8 +57,9 @@ fun LeimartTextField(
                 ),
             leadingIcon = leadingIcon,
             trailingIcon = trailingIcon,
-            shape = RoundedCornerShape(7.dp),
+            shape = shape,
             visualTransformation = visualTransformation,
+            interactionSource = interactionSource
         )
     }
 }

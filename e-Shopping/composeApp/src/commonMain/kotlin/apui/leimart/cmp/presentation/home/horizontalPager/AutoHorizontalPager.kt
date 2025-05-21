@@ -40,7 +40,6 @@ fun AutoHorizontalPager(
     LaunchedEffect(Unit) {
         while (true) {
             delay(3000)
-
             val isDragged = pagerIsDragged
             val isPressed = pagerIsPressed
             if (!isDragged && !isPressed) {

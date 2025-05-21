@@ -19,6 +19,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import apui.leimart.cmp.presentation.navigation.Destination
 import apui.leimart.cmp.presentation.theme.appColor.primary
 import e_shopping.composeapp.generated.resources.Res
+import e_shopping.composeapp.generated.resources.category_icon
 import e_shopping.composeapp.generated.resources.home_page
 import e_shopping.composeapp.generated.resources.search
 import e_shopping.composeapp.generated.resources.user
@@ -50,8 +51,9 @@ fun LeimartBottomBar(navController: NavHostController) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 HorizontalIconResourceBottom(Res.drawable.home_page, "Home")
-                HorizontalIconResourceBottom(Res.drawable.search, "Notification")
-                HorizontalIconResourceBottom(Res.drawable.user, "Ringing")
+                HorizontalIconResourceBottom(Res.drawable.search, "Search")
+                HorizontalIconResourceBottom(Res.drawable.category_icon, "Search")
+                HorizontalIconResourceBottom(Res.drawable.user, "User")
             }
         }
 }
@@ -61,7 +63,7 @@ fun HorizontalIconResourceBottom(resource: DrawableResource, contentDescription:
     Icon(
         painter = painterResource(resource),
         contentDescription = contentDescription,
-        modifier = Modifier.size(30.dp).clickable {
+        modifier = Modifier.size(25.dp).clickable {
         },
         tint = primary,
     )
