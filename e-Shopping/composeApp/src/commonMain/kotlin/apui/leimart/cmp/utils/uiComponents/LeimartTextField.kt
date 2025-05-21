@@ -34,15 +34,14 @@ fun LeimartTextField(
             value = value,
             onValueChange = onValueChange,
             /*
-                        */
-            /*label = {
+            label = {
                             LeimartText(
                                 label,
                                 fontResource = fontResource,
                                 color = primary.copy(alpha = 0.7f),
                             )
-                        }*/
-            /*,*/
+                        }
+            ,*/
             placeholder = {
                 LeimartText(
                     label,
