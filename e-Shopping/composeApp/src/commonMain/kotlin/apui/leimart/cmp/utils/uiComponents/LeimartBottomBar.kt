@@ -6,9 +6,9 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.BottomAppBar
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -37,14 +37,30 @@ fun LeimartBottomBar(navController: NavHostController) {
     println("Current Route: $currentRoute")
 
     if (currentRoute != Destination.Login.route && currentRoute != Destination.SignUp.route)
-        BottomAppBar(
-            backgroundColor = MaterialTheme.colors.background,
+        /*BottomAppBar(
+            backgroundColor = MaterialTheme.colorScheme.background,
             contentPadding = PaddingValues(10.dp),
             elevation = 0.dp
         ) {
-            /*SpaceBetween: Puts equal space between items (none at start/end)
+            *//*SpaceBetween: Puts equal space between items (none at start/end)
               SpaceAround: Puts equal space around items (half at start/end)
-              SpaceEvenly: Puts equal space everywhere (including start/end)*/
+              SpaceEvenly: Puts equal space everywhere (including start/end)*//*
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceAround,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                HorizontalIconResourceBottom(Res.drawable.home_page, "Home")
+                HorizontalIconResourceBottom(Res.drawable.search, "Search")
+                HorizontalIconResourceBottom(Res.drawable.category_icon, "Search")
+                HorizontalIconResourceBottom(Res.drawable.user, "User")
+            }
+        }*/
+        BottomAppBar(
+            containerColor = MaterialTheme.colorScheme.background,
+            contentPadding = PaddingValues(10.dp),
+            tonalElevation = 0.dp
+        ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceAround,
@@ -56,6 +72,7 @@ fun LeimartBottomBar(navController: NavHostController) {
                 HorizontalIconResourceBottom(Res.drawable.user, "User")
             }
         }
+
 }
 
 @Composable

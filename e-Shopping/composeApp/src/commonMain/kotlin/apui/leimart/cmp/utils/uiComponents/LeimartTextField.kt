@@ -2,11 +2,12 @@ package apui.leimart.cmp.utils.uiComponents
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import apui.leimart.cmp.presentation.theme.appColor.primary
@@ -25,7 +26,11 @@ fun LeimartTextField(
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
     visualTransformation: VisualTransformation? = VisualTransformation.None,
-    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
+    interactionSource: MutableInteractionSource = remember {
+        MutableInteractionSource()
+    },
+    focusedBorderColor: Color = primary,
+    unfocusedBorderColor: Color = secondary
 ) {
     if (visualTransformation != null) {
         OutlinedTextField(
@@ -33,26 +38,24 @@ fun LeimartTextField(
                 modifier,
             value = value,
             onValueChange = onValueChange,
-            /*
             label = {
-                            LeimartText(
-                                label,
-                                fontResource = fontResource,
-                                color = primary.copy(alpha = 0.7f),
-                            )
-                        }
-            ,*/
-            placeholder = {
+                LeimartText(
+                    label,
+                    fontResource = fontResource,
+                    color = primary.copy(alpha = 0.8f),
+                )
+            },
+            /*placeholder = {
                 LeimartText(
                     label,
                     fontResource = fontResource,
                     color = primary.copy(alpha = 0.7f),
                 )
-            },
+            },*/
             colors =
-                TextFieldDefaults.outlinedTextFieldColors(
-                    focusedBorderColor = primary,
-                    unfocusedBorderColor = secondary,
+                OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = focusedBorderColor,
+                    unfocusedBorderColor = unfocusedBorderColor,
                 ),
             leadingIcon = leadingIcon,
             trailingIcon = trailingIcon,

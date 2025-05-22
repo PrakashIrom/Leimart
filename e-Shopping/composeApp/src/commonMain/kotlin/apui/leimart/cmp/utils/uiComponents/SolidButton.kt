@@ -1,8 +1,8 @@
 package apui.leimart.cmp.utils.uiComponents
 
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -20,7 +20,7 @@ fun SolidButton(
         onClick = onClick,
         modifier = modifier,
         shape = RoundedCornerShape(15.dp),
-        colors = ButtonDefaults.buttonColors(backgroundColor = secondary),
+        colors = ButtonDefaults.buttonColors(secondary),
     ) {
         LeimartText(
             fontResource = GetBodyResource.blackInter,

@@ -1,7 +1,5 @@
 package apui.leimart.cmp.presentation.home.searchItem
 
-import androidx.compose.foundation.LocalIndication
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Spacer
@@ -10,7 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -43,7 +41,8 @@ fun SearchItem() {
                 modifier = Modifier.size(18.dp)
             )
         },
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        unfocusedBorderColor = secondary
     )
     Spacer(modifier = Modifier.height(10.dp))
 }

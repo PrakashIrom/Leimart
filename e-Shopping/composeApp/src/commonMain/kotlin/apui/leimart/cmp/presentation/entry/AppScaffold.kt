@@ -1,6 +1,6 @@
 package apui.leimart.cmp.presentation.entry
 
-import androidx.compose.material.Scaffold
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import apui.leimart.cmp.presentation.navigation.AppNavHost
