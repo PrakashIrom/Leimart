@@ -1,4 +1,4 @@
-package apui.leimart.cmp.presentation.home.horizontalPager
+package apui.leimart.cmp.domain.model
 
 val pagerItems =
     listOf<String>(

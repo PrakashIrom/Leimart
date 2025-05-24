@@ -13,8 +13,8 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import apui.leimart.cmp.domain.model.pagerItems
 import apui.leimart.cmp.presentation.home.HomePage
-import apui.leimart.cmp.presentation.home.horizontalPager.pagerItems
 import apui.leimart.cmp.presentation.login.LoginPage
 import apui.leimart.cmp.presentation.registration.SignUpPage
 

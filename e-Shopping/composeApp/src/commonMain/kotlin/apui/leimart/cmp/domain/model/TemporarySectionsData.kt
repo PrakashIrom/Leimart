@@ -1,4 +1,4 @@
-package apui.leimart.cmp.presentation.home.sections
+package apui.leimart.cmp.domain.model
 
 data class Section(
     val itemName: String,

@@ -20,7 +20,7 @@ import apui.leimart.cmp.presentation.home.sections.Sections
 @Composable
 fun HomePage(pageItems: List<String>, paddingValues: PaddingValues) {
     val loopedItems = remember { List(1000) { pageItems[it % pageItems.size] } }
-    val pagerState = rememberPagerState(initialPage = 500, pageCount = { loopedItems.size })
+    val pagerState = rememberPagerState(initialPage = 0, pageCount = { loopedItems.size })
 
     LazyColumn(
         modifier = Modifier.fillMaxSize().padding(paddingValues),
