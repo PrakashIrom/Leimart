@@ -21,8 +21,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import apui.leimart.cmp.domain.model.Section
-import apui.leimart.cmp.presentation.theme.appColor.leimartBlue
-import apui.leimart.cmp.presentation.theme.appColor.leimartGreen
 import apui.leimart.cmp.presentation.theme.appColor.primary
 import apui.leimart.cmp.presentation.theme.appColor.secondary
 import apui.leimart.cmp.presentation.theme.typography.GetBodyResource
