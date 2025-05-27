@@ -14,7 +14,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import apui.leimart.cmp.presentation.theme.appColor.primary
-import apui.leimart.cmp.presentation.theme.appColor.secondary
 import apui.leimart.cmp.utils.uiComponents.LeimartTextField
 import e_shopping.composeapp.generated.resources.Res
 import e_shopping.composeapp.generated.resources.search
@@ -26,7 +25,8 @@ fun SearchItem() {
     val isFocused = interactionSource.collectIsFocusedAsState().value
 
     LeimartTextField(
-        onValueChange = {}, label = "Search", value = "", modifier =
+        onValueChange = {}, label = "Search", value = "",
+        modifier =
             Modifier
                 .height(60.dp)
                 .fillMaxWidth()
@@ -36,12 +36,11 @@ fun SearchItem() {
             Icon(
                 painter = painterResource(Res.drawable.search),
                 contentDescription = "Search",
-                tint = if (isFocused) primary else secondary,
+                tint = if (isFocused) primary else primary.copy(alpha = 0.5f),
                 modifier = Modifier.size(18.dp)
             )
         },
         interactionSource = interactionSource,
-        unfocusedBorderColor = secondary
     )
     Spacer(modifier = Modifier.height(10.dp))
 }

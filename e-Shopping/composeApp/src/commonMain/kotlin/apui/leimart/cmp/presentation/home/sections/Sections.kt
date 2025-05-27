@@ -35,7 +35,7 @@ fun Sections() {
 @Composable
 fun VerticalValues(title: String, items: List<Section>) {
     Column {
-        LeimartText(title, fontResource = GetBodyResource.extraBoldItalicInter, fontSize = 18.sp)
+        LeimartText(title, fontResource = GetBodyResource.boldInter, fontSize = 18.sp)
         Spacer(modifier = Modifier.height(3.dp))
         HorizontalItems(items)
         Spacer(modifier = Modifier.height(5.dp))
@@ -44,7 +44,7 @@ fun VerticalValues(title: String, items: List<Section>) {
 
 @Composable
 fun HorizontalItems(items: List<Section>) {
-    LazyRow  {
+    LazyRow {
         items(items.size) {
             HorizontalItem(items[it])
         }

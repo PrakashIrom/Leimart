@@ -30,7 +30,7 @@ fun LeimartTextField(
         MutableInteractionSource()
     },
     focusedBorderColor: Color = primary,
-    unfocusedBorderColor: Color = secondary
+    unfocusedBorderColor: Color = primary
 ) {
     if (visualTransformation != null) {
         OutlinedTextField(
