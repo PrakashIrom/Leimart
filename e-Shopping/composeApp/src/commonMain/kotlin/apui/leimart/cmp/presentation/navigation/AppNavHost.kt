@@ -5,7 +5,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -38,7 +37,7 @@ fun AppNavHost(
             }) {
         NavHost(navController = navController, startDestination = startDestination) {
             composable(Destination.Login.route) {
-                LoginPage(Modifier.fillMaxSize(), navController)
+                LoginPage(Modifier.fillMaxSize(), navController, paddingValues)
             }
             composable(Destination.SignUp.route) {
                 SignUpPage(navController)

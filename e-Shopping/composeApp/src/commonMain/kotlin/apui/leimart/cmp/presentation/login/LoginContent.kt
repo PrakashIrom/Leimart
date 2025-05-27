@@ -59,21 +59,17 @@ fun LoginContent(
     }
 
     Column(
-        modifier = Modifier.padding(16.dp).fillMaxSize(),
+        modifier = Modifier.padding(16.dp),/*.fillMaxSize()*/
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         LeimartText(
-            modifier =
-                Modifier
-                    .height(70.dp)
-                    .width(310.dp),
             text = stringResource(Res.string.login),
-            fontResource = GetHeaderResource.playfairDisplayBold,
+            fontResource = GetBodyResource.boldInter,
             fontSize = 25.sp,
             fontWeight = FontWeight.Bold,
             color = primary,
         )
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(15.dp))
         LoginForm(userMailNo, userPassword, onEmailOrPhoneChange, onPasswordChange)
         Spacer(Modifier.height(16.dp))
         LoginActions(navController)
@@ -140,27 +136,29 @@ fun PasswordTextField(
 
 @Composable
 fun LoginActions(navController: NavHostController) {
-    Column {
-        SolidButton(
-            {},
-            stringResource(Res.string.submit),
-            modifier =
-                Modifier
-                    .height(70.dp)
-                    .width(311.dp),
+
+    SolidButton(
+        {},
+        stringResource(Res.string.submit),
+        modifier =
+            Modifier
+                .height(70.dp)
+                .width(311.dp),
+        fontResource = GetBodyResource.boldInter,
+        buttonColor = primary
+    )
+    Spacer(Modifier.height(6.dp))
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.End,
+    ) {
+        LeimartText(
+            fontResource = GetBodyResource.regularInter,
+            text = "Forgot Password?",
+            color = leimartBlue,
+            fontSize = 13.sp,
+            modifier = Modifier.clickable {},
         )
-        Spacer(Modifier.height(6.dp))
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.End,
-        ) {
-            LeimartText(
-                fontResource = GetBodyResource.regularInter,
-                text = "Forgot Password?",
-                color = leimartBlue,
-                fontSize = 13.sp,
-                modifier = Modifier.clickable {},
-            )
-        }
     }
+
 }

@@ -16,7 +16,7 @@ fun AppScaffold(navController: NavHostController) {
     ) { paddingValues ->
         AppNavHost(
             navController = navController,
-            startDestination = Destination.Home.route,
+            startDestination = Destination.Login.route,
             paddingValues = paddingValues
         )
     }

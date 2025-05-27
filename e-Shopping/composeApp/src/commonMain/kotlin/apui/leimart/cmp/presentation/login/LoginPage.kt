@@ -3,6 +3,8 @@ package apui.leimart.cmp.presentation.login
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -16,6 +18,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun LoginPage(
     modifier: Modifier,
     navController: NavHostController,
+    paddingValues: PaddingValues,
 ) {
     val focusManager = LocalFocusManager.current
     Box(
@@ -26,19 +29,10 @@ fun LoginPage(
                     indication = null,
                 ) {
                     focusManager.clearFocus() // Clear focus when tapping outside
-                },
+                }/*.padding(paddingValues)*/,
         contentAlignment = Alignment.Center,
     ) {
-        /*Image(
-            painter = painterResource(Res.drawable.background_image),
-            contentDescription = "Background Image",
-            modifier =
-                Modifier
-                    .fillMaxSize()
-                    .graphicsLayer { alpha = 0.6f },
-            contentScale = ContentScale.Crop,
-        )*/
-        /*TransparentBox(alpha = 0.05f) { */LoginContent(navController = navController) //}
+        LoginContent(navController = navController)
     }
 }
 
